@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Variables and typeof</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 480px; margin: 40px auto; padding: 0 16px; }
+    label { display: block; margin-top: 16px; font-weight: bold; }
+    input[type="text"], input[type="number"] { width: 100%; padding: 8px; margin-top: 6px; box-sizing: border-box; }
+    .hint { font-weight: normal; color: #666; font-size: 0.85em; }
+    button { margin-top: 20px; padding: 10px 20px; cursor: pointer; }
+    #msg { margin-top: 16px; color: #0a7a2f; }
+  </style>
+</head>
+<body>
+  <h1>User Details</h1>
+  <p>Fill in the form and submit. Open the console (F12 → Console) to see each question with its answer and type.</p>
+
+  <form id="userForm">
+    <label for="name">What is your name?</label>
+    <input type="text" id="name" required>
+
+    <label for="age">What is your age?</label>
+    <input type="number" id="age" min="0" max="120" required>
+
+    <label>Are you currently employed?</label>
+    <label style="font-weight: normal;"><input type="radio" id="yes" name="employed" value="yes" required> Yes</label>
+    <label style="font-weight: normal;"><input type="radio" name="employed" value="no"> No</label>
+
+    <label for="skills">What are your skills? <span class="hint">(separate with commas)</span></label>
+    <input type="text" id="skills" placeholder="e.g. JavaScript, HTML, CSS" required>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    document.getElementById("userForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      var userName = document.getElementById("name").value;
+
+      let age = Number(document.getElementById("age").value);
+
+     
+      const isEmployed = document.getElementById("yes").checked;
+
+          const skills = {};
+      const skillList = document.getElementById("skills").value.split(",");
+      for (let i = 0; i < skillList.length; i++) {
+        skills["skill" + (i + 1)] = skillList[i].trim();
+      }
+
+    
+      console.log("Name:", userName, "| typeof:", typeof userName);
+      console.log("Age:", age, "| typeof:", typeof age);
+      console.log("Is Employed:", isEmployed, "| typeof:", typeof isEmployed);
+      console.log("Skills:", skills, "| typeof:", typeof skills);
+      document.getElementById("msg").textContent = "Submitted! Check the console for the output.";
+    });
+  </script>
+</body>
+</html>

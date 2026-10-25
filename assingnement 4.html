@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignment 4: Loop Control Structures</title>
+<style>
+  body { margin: 0; padding: 16px; background: #fff; color: #222; }
+  #output { font-family: Consolas, "Courier New", monospace; font-size: 15px; line-height: 1.6; margin: 0; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+  <h1>Assignment 4: Loop Control Structures</h1>
+
+<pre id="output"></pre>
+
+<script>
+  var output = document.getElementById("output");
+
+  function print(text) {
+    output.textContent += text + "\n";
+    console.log(text);
+  }
+
+  var num = 5;
+  print("-- Multiplication Table of " + num + " --");
+  for (var i = 1; i <= 5; i++) {
+    print(num + " x " + i + " = " + (num * i));
+  }
+  print("");
+
+  print("");
+  print("-- First number > 10 divisible by 6 --");
+  var n = 11;
+  while (true) {
+    if (n % 6 === 0) {
+      print("Found: " + n);
+      break;               }
+    n++;
+  }
+  print("");
+
+  print("");
+  print("-- Numbers 1 to 10 (skipping multiples of 3) --");
+  var k = 0;
+  do {
+    k++;
+    if (k % 3 === 0) {
+      continue;             }
+    print("Number: " + k);
+  } while (k < 10);
+</script>
+
+</body>
+</html>

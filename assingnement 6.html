@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrays, Objects, and Core Methods</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 16px; }
+    pre { background: #f4f4f4; padding: 12px; border-radius: 6px; line-height: 1.6; border-left: 4px solid #2c3e50; }
+  </style>
+</head>
+<body>
+  <h1>Assignment 6: Arrays, Objects, and Core Methods</h1>
+  <pre id="output"></pre>
+
+  <script>
+    function show(text) {
+      document.getElementById("output").textContent += text + "\n";
+      console.log(text);
+    }
+
+    const products = [
+      { name: "Laptop", price: 800 },
+      { name: "Mouse", price: 25 },
+      { name: "Keyboard", price: 45 }
+    ];
+
+    show("-- All Products (forEach) --");
+    products.forEach(function (product) {
+      show(`Item: ${product.name} - Price: $${product.price}`);
+    });
+    show("");
+
+    const cheapProducts = products.filter(function (product) {
+      return product.price < 50;
+    });
+    show("-- Filtered Products (Price < $50) --");
+    show("[ " + cheapProducts.map(function (p) {
+      return `{ name: '${p.name}', price: ${p.price} }`;
+    }).join(", ") + " ]");
+    show("");
+
+    const productTags = products.map(function (product) {
+      return `${product.name.toUpperCase()} costs $${product.price}`;
+    });
+    show("-- Mapped Product Tags (map) --");
+    show("[ " + productTags.map(function (tag) {
+      return `"${tag}"`;
+    }).join(", ") + " ]");
+  </script>
+</body>
+</html>

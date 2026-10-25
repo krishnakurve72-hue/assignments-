@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade Evaluator</title>
+</head>
+<body>
+  <h1>Grade Evaluator</h1>
+  <p>Please go in cosole to see the results.</p>
+
+  <script>
+    const score = Number(prompt("Enter your test score (0-100):"));
+
+    if (isNaN(score) || score < 0 || score > 100) {
+      console.log("Invalid score. Please enter a number between 0 and 100.");
+      alert("Invalid score. Please enter a number between 0 and 100.");
+    } else {
+      let grade;
+
+      // 2. switch: determine the letter grade
+      // Math.floor(score / 10) turns 90-100 into 9 or 10, 80-89 into 8, etc.
+      switch (Math.floor(score / 10)) {
+        case 10:
+        case 9:
+          grade = "A";
+          break;
+        case 8:
+          grade = "B";
+          break;
+        case 7:
+          grade = "C";
+          break;
+        case 6:
+          grade = "D";
+          break;
+        default:
+          grade = "F";
+      }
+
+      // 3. ternary: pass or fail (40 is the passing mark here; change if needed)
+      const result = score >= 40 ? "Passed" : "Failed";
+
+      console.log(`Score: ${score}`);
+      console.log(`Grade: ${grade}`);
+      console.log(`Result: ${result}`);
+
+      alert(`Score: ${score}\nGrade: ${grade}\nResult: ${result}`);
+    }
+  </script>
+</body>
+</html>

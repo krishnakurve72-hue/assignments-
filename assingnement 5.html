@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Function Architecture and Scope</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 16px; }
+    pre { background: #f4f4f4; padding: 12px; border-radius: 6px; line-height: 1.6; border-left: 4px solid #2c3e50; }
+  </style>
+</head>
+<body>
+  <h1>Assignment 5: Function Architecture and Scope</h1>
+  <p>Enter the length and width in the prompts. Leave a prompt blank to use its default value.</p>
+  <pre id="output"></pre>
+
+  <script>
+    function show(text) {
+      document.getElementById("output").textContent += text + "\n";
+      console.log(text);
+    }
+
+    const DEFAULT_LENGTH = 5;
+    const DEFAULT_WIDTH = 4;
+
+    function areaStandard(length = DEFAULT_LENGTH, width = DEFAULT_WIDTH) {
+      return length * width;
+    }
+
+    const areaArrow = (length = DEFAULT_LENGTH, width = DEFAULT_WIDTH) => length * width;
+
+    const lengthInput = prompt("Enter the length (leave blank for default " + DEFAULT_LENGTH + "):");
+    const widthInput = prompt("Enter the width (leave blank for default " + DEFAULT_WIDTH + "):");
+
+    const length = (lengthInput === null || lengthInput.trim() === "") ? undefined : Number(lengthInput);
+    const width = (widthInput === null || widthInput.trim() === "") ? undefined : Number(widthInput);
+
+    const isBad = (value) => value !== undefined && (isNaN(value) || value < 0);
+
+    if (isBad(length) || isBad(width)) {
+      show("Invalid input. Please enter positive numbers only.");
+    } else {
+      const usedLength = length === undefined ? DEFAULT_LENGTH : length;
+      const usedWidth = width === undefined ? DEFAULT_WIDTH : width;
+
+      show(`Standard Function Area (${usedLength}x${usedWidth}): ` + areaStandard(length, width));
+      show(`Arrow Function Area (${usedLength}x${usedWidth}): ` + areaArrow(length, width));
+    }
+    show("");
+
+    {
+      let blockVar = "I am only visible inside this block";
+    }
+    try {
+      show(blockVar);
+    } catch (error) {
+      show("Scope Test Error: " + error.name + ": " + error.message + " (when accessed outside block)");
+    }
+
+    // Function scope: variables declared inside a function cannot be used outside it
+    function scopeDemo() {
+      var functionVar = "I am only visible inside this function";
+    }
+    scopeDemo();
+    try {
+      show(functionVar);
+    } catch (error) {
+      show("Scope Test Error: " + error.name + ": " + error.message + " (when accessed outside function)");
+    }
+  </script>
+</body>
+</html>

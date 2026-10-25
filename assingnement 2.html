@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tip Calculator</title>
+</head>
+<body>
+  <h1>Tip Calculator</h1>
+  <p>Please go in cosole to see the results.</p>
+
+  <script>
+    let billInput = prompt("Enter the bill amount:");
+    let tipInput = prompt("Enter the tip percentage (e.g. 10):");
+
+    let bill = Number(billInput);
+    let tipPercent = Number(tipInput);
+
+ 
+    if (isNaN(bill) || isNaN(tipPercent) || billInput === null || tipInput === null) {
+      console.log("Invalid input. Please enter numbers only.");
+    } else {
+      // Arithmetic and assignment operators
+      let tipAmount = bill * tipPercent;  // multiply
+      tipAmount /= 100;                   // divide and assign
+
+      let total = bill;                   // start with the bill
+      total += tipAmount;                 // add the tip and assign
+
+      // Formatted output
+      console.log(`Subtotal: $${bill}`);
+      console.log(`Tip percentage: ${tipPercent}%`);
+      console.log(`Calculated Tip: $${tipAmount}`);
+      console.log(`Total Amount to Pay: $${total}`);
+    }
+  </script>
+</body>
+</html>
